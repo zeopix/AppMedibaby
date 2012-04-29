@@ -1,2 +1,17 @@
 
 #panel { text-align: center; }
+
+.mobile-container { margin-top: 10px; border-radius: 10px; box-shadow: 0px 0px 10px #333 inset;  }
+.mobile-container div.description { float: left;margin-top: 10px; }
+.mobile-container div.description p.name { font-size: 20px; color: #333; }
+.mobile-container div.description p.location { font-size: 14px; color: #777; text-shadow: 1px 1px 0px white; }
+
+.mobile-container div.image { margin-top: 10px; margin-left: 20px; float: left; width: 120px; height: 120px; overflow: hidden; }
+
+.mobile-container .menu {
+
+}
+
+.mobile-container .menu { margin-top: 10px; padding: 5px;}
+.mobile-container .menu a { margin: 7px; text-decoration: none; float: left; text-align: center; line-height: 30px; color: #333; text-shadow: 1px 1px 0px #EEE;  }
+.mobile-container .menu a:hover { text-decoration: none;  }
