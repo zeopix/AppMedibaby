@@ -1,0 +1,307 @@
+
+<html>
+    <head>
+        <title>Hunde la Flota</title>
+        <meta charset="utf-8">
+
+        <!-- fonts --!><link href='http://fonts.googleapis.com/css?family=Norican' rel='stylesheet' type='text/css'>
+            
+            
+            <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+            <script src="assets/js/resize.js"></script>
+            <script src="assets/js/effects.js"></script>
+            <script src="assets/js/transitions.js"></script>
+            <script src="assets/js/slider.js"></script>
+            <script src="assets/js/spin.js"></script>
+            <script src="assets/js/json.js"></script>
+            
+            <!-- Libs n tools -->
+            <link href="assets/css/default.css" rel="stylesheet">
+            <link href="assets/css/buttons.css" rel="stylesheet">
+            <link href="assets/css/gradients.css" rel="stylesheet">
+            <link href="assets/css/slider.css" rel="stylesheet">
+            <link href="assets/css/game.css" rel="stylesheet">
+            <link href="assets/css/games.css" rel="stylesheet">
+            <link href="assets/css/maps.css" rel="stylesheet">
+            
+            <!-- View styles -->
+            <link href="assets/css/main.css" rel="stylesheet">
+            
+            <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+            
+            <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/touch-icon.png">
+            <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/touch-icon.png">
+            <link rel="apple-touch-icon-precomposed" href="assets/images/touch-icon.png">
+            <link rel="apple-touch-icon" href="assets/images/touch-icon.png">
+            
+            <script>
+            function updateStatus(){
+            $.ajax({
+            url: '/Game/web/game/status/16',
+            dataType: 'JSON',
+            success: function(response){
+            
+            $(".tablero").attr("opponent-turn",response.game.opponent_turn);
+            console.log(response)
+            printMap(response.tu);
+            }
+			})
+            }
+            function printMap(blocks){
+            
+            for(movement in blocks){
+            
+            var r= blocks[movement];
+            $(".tablero .block#"+movement).addClass('selected');
+            $(".tablero .block#"+movement).addClass(r.status);
+            
+            }
+            }
+            
+            $(function(){
+
+              
+            updateStatus();
+            
+            setInterval(function(){
+			updateStatus();			
+            },3000);
+            
+            $(".tablero .block").click(function(){
+			var step = $("ul#slider").attr("margin");
+			var c=  $(this).attr("c");
+			var f=  $(this).attr("f");
+			var game=  $(".tablero#propio").attr("game");
+			
+			$(this).addClass("selected");
+			
+			$.ajax({
+            url: 'http://localhost/Game/web/game/shot',
+            type: 'POST',
+            data: { 'game' : game, 'c' : c, 'f' : f },
+            dataType: 'JSON',
+            success: function(response){
+            if(response.status == 310){
+            alert("Espera tu turno!");
+            }else{
+            updateStatus();
+            }
+            }
+			})
+			
+			//push movement to the server (c,f)
+			//if got fired->updateStats()
+			//			  ->addClass('fire')
+			//else
+			//			  ->addClass('water')
+			
+            })
+            })
+            </script>
+            <style>
+            
+                </style>	
+                <script type="text/javascript" charset="utf-8" src="cordova-1.6.0.js"></script>
+                <script type="text/javascript">
+                    
+                    
+                    function onBodyLoad()
+                    {		
+                        document.addEventListener("deviceready", onDeviceReady, false);
+                    }
+                    
+                    /* When this function is called, Cordova has been initialized and is ready to roll */
+                    /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+                     see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+                     for more details -jm */
+                    function onDeviceReady()
+                    {
+                        // do your thing!
+                        resize();
+                    }
+                    
+                    </script>
+                </head>
+    <body onload="onBodyLoad()">
+            <div id="play">
+            <div id="infopanel">
+            <div class="menu">
+			<h1>Armas</h1>
+			
+			<img src="assets/images/weapon/1.png">
+			
+            </div>
+            <div class="menu">
+            <h1>Partida</h1>
+            <p>ivan</p>
+            <table width="80%" style="margin-left: 10px">
+			<tr>
+            <td class="first">Turno</td>
+            <td class="second">ivan</td>
+			</tr>
+			<tr>
+            <td>Puntos</td>
+            <td>50</td>
+			</tr>
+            </table>
+            
+            
+            
+            </div>
+            <div class="controls">
+            <a class="button blue large" id="loadmap">Reiniciar</a>
+            <a class="button red large">Rendición</a>
+            <a class="button large" href="/Game/web/game/">Menú</a>
+            </div>
+            </div>
+            
+            <div id="gamepanel">
+            <div class="turno">
+            <div id="propio" class="tablero map1" style="" game="16" opponent-turn="1">
+			<div class="block" id="11" c="1" f="1" >
+            </div>
+            <div class="block" id="12" c="1" f="2" >
+            </div>
+            <div class="block" id="13" c="1" f="3" >
+            </div>
+            <div class="block" id="14" c="1" f="4" >
+            </div>
+            <div class="block" id="15" c="1" f="5" >
+            </div>
+            <div class="block" id="16" c="1" f="6" >
+            </div>
+            <div class="block" id="17" c="1" f="7" >
+            </div>
+            <div class="block" id="18" c="1" f="8" >
+            </div>
+            <div style="clear:both"></div>
+			<div class="block" id="21" c="2" f="1" >
+            </div>
+            <div class="block" id="22" c="2" f="2" >
+            </div>
+            <div class="block" id="23" c="2" f="3" >
+            </div>
+            <div class="block" id="24" c="2" f="4" >
+            </div>
+            <div class="block" id="25" c="2" f="5" >
+            </div>
+            <div class="block" id="26" c="2" f="6" >
+            </div>
+            <div class="block" id="27" c="2" f="7" >
+            </div>
+            <div class="block" id="28" c="2" f="8" >
+            </div>
+            <div style="clear:both"></div>
+			<div class="block" id="31" c="3" f="1" >
+            </div>
+            <div class="block" id="32" c="3" f="2" >
+            </div>
+            <div class="block" id="33" c="3" f="3" >
+            </div>
+            <div class="block" id="34" c="3" f="4" >
+            </div>
+            <div class="block" id="35" c="3" f="5" >
+            </div>
+            <div class="block" id="36" c="3" f="6" >
+            </div>
+            <div class="block" id="37" c="3" f="7" >
+            </div>
+            <div class="block" id="38" c="3" f="8" >
+            </div>
+            <div style="clear:both"></div>
+			<div class="block" id="41" c="4" f="1" >
+            </div>
+            <div class="block" id="42" c="4" f="2" >
+            </div>
+            <div class="block" id="43" c="4" f="3" >
+            </div>
+            <div class="block" id="44" c="4" f="4" >
+            </div>
+            <div class="block" id="45" c="4" f="5" >
+            </div>
+            <div class="block" id="46" c="4" f="6" >
+            </div>
+            <div class="block" id="47" c="4" f="7" >
+            </div>
+            <div class="block" id="48" c="4" f="8" >
+            </div>
+            <div style="clear:both"></div>
+			<div class="block" id="51" c="5" f="1" >
+            </div>
+            <div class="block" id="52" c="5" f="2" >
+            </div>
+            <div class="block" id="53" c="5" f="3" >
+            </div>
+            <div class="block" id="54" c="5" f="4" >
+            </div>
+            <div class="block" id="55" c="5" f="5" >
+            </div>
+            <div class="block" id="56" c="5" f="6" >
+            </div>
+            <div class="block" id="57" c="5" f="7" >
+            </div>
+            <div class="block" id="58" c="5" f="8" >
+            </div>
+            <div style="clear:both"></div>
+			<div class="block" id="61" c="6" f="1" >
+            </div>
+            <div class="block" id="62" c="6" f="2" >
+            </div>
+            <div class="block" id="63" c="6" f="3" >
+            </div>
+            <div class="block" id="64" c="6" f="4" >
+            </div>
+            <div class="block" id="65" c="6" f="5" >
+            </div>
+            <div class="block" id="66" c="6" f="6" >
+            </div>
+            <div class="block" id="67" c="6" f="7" >
+            </div>
+            <div class="block" id="68" c="6" f="8" >
+            </div>
+            <div style="clear:both"></div>
+			<div class="block" id="71" c="7" f="1" >
+            </div>
+            <div class="block" id="72" c="7" f="2" >
+            </div>
+            <div class="block" id="73" c="7" f="3" >
+            </div>
+            <div class="block" id="74" c="7" f="4" >
+            </div>
+            <div class="block" id="75" c="7" f="5" >
+            </div>
+            <div class="block" id="76" c="7" f="6" >
+            </div>
+            <div class="block" id="77" c="7" f="7" >
+            </div>
+            <div class="block" id="78" c="7" f="8" >
+            </div>
+            <div style="clear:both"></div>
+			<div class="block" id="81" c="8" f="1" >
+            </div>
+            <div class="block" id="82" c="8" f="2" >
+            </div>
+            <div class="block" id="83" c="8" f="3" >
+            </div>
+            <div class="block" id="84" c="8" f="4" >
+            </div>
+            <div class="block" id="85" c="8" f="5" >
+            </div>
+            <div class="block" id="86" c="8" f="6" >
+            </div>
+            <div class="block" id="87" c="8" f="7" >
+            </div>
+            <div class="block" id="88" c="8" f="8" >
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            </div>
+            
+            </div>
+            
+            
+            
+            </body>
+            </html>

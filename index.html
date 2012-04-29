@@ -1,0 +1,179 @@
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Medibaby Mobile</title>
+        
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0" />
+                               
+        <link rel="stylesheet" href="assets/themes/css/apple.css" title="Apple">
+        <link rel="stylesheet" href="assets/css/main.css" title="Apple">
+
+
+       <!--
+        <script src="assets/src/lib/jquery-1.7.min.js" type="application/x-javascript" charset="utf-8"></script> 
+        
+         <script src="assets/src/jqtouch-jquery.min.js" type="application/x-javascript" charset="utf-8"></script> 
+
+         <script src="assets/src/jqtouch.min.js" type="application/x-javascript" charset="utf-8"></script> 
+        
+        <script src="{{ asset('bundles/centerweb/js/jquery.transit.js" type="text/javascript" charset="utf-8"></script>
+        
+       -->
+        <script src="assets/src/lib/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="assets/src/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+ 
+ 		<script>var loginurl = "http://localhost/Tele/web/app_api.php/";</script>
+        <script src="assets/js/login.js" type="text/javascript" charset="utf-8"></script>
+ 
+        <script type="text/javascript" charset="utf-8">
+            var jQT = new $.jQTouch({
+                icon: 'jqtouch.png',
+                icon4: 'jqtouch4.png',
+                addGlossToIcon: false,
+                startupScreen: 'jqt_startup.png',
+                statusBar: 'black-translucent',
+                preloadImages: []
+                
+            });
+
+			function windowResize(){
+
+                var bw = $(window).width();
+                w = bw*0.53;
+                var elements = $("#swiper").attr("data-elements");
+                $("#swiper").css("width",w*elements)
+                $("#swiper").css("margin-left",(bw*0.24))
+                $("#swiper").attr("data-margin",(bw*0.24))
+                $("#swiper li").css("width",(w-3));
+                $("#swiper").attr("data-width",(w-3));
+                $(".swipercontainer").css("width",bw);
+
+            }
+
+			function moveSwiper(active,target){
+                var transition = $("#swiper").attr("data-transition");
+
+                if(transition == "stop"){
+
+                	$("#swiper").attr("data-transition","active");
+
+                	var w = $("#swiper").attr("data-width");
+                	var m = $("#swiper").attr("data-margin");
+				
+                	$("#swiper").attr("data-active",target);
+					
+					$("#swiper li").eq(target-1).animate({ opacity: 1, scale: 1 },500);
+					$("#swiper li").eq(active-1).animate({ opacity: 0.5, scale: 0.8},500);
+					
+					$("#swiper").animate({ 'margin-left': (-((target-1)*w)+parseInt(m))+'px'},300,'linear',function(){
+                		
+                		$("#swiper").attr("data-transition","stop");
+
+					});
+				   
+                }
+
+				
+			}
+
+            $(function(){
+            	$("#swiper li.small").animate({ scale: 0.8 },100,'linear');
+
+                // Show a swipe event on swipe test
+                $('.swipercontainer').swipeLeft(function(evt, data) {
+                	var active = $("#swiper").attr("data-active");
+                	var elements = $("#swiper").attr("data-elements");
+
+        	            if(active < elements){
+	                    	moveSwiper(active,parseInt(active)+1)
+    	                }
+                });
+                $('.swipercontainer').swipeRight(function(evt, data) {
+                	var active = $("#swiper").attr("data-active");
+                	var elements = $("#swiper").attr("data-elements");
+
+                	    if(active > 1){
+                    		moveSwiper(active,(parseInt(active)-1))
+            	        }
+                });
+                
+				windowResize();                
+                $(window).resize(function(){
+                	windowResize();
+                });
+                
+                $("a[rel=link]").click(function(e){
+                	e.preventDefault();
+                	var path = $(this).attr("path");
+                	
+                		window.location = path;
+                	
+                });
+              
+              
+                
+            });
+            
+        </script>
+        <style type="text/css" media="screen">
+            #jqt.fullscreen #home .info {
+                display: none;
+            }
+            div#jqt #about {
+                padding: 100px 10px 40px;
+                text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0;
+                color: #999;
+                font-size: 13px;
+                text-align: center;
+                background: #161618;
+            }
+            div#jqt #about p {
+                margin-bottom: 8px;
+            }
+            div#jqt #about a {
+                color: #fff;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="jqt">
+            <div id="home" class="current">
+			 	<div class="background"></div>
+				
+                <div class="scroll">
+                	<div class="swipercontainer">
+                		<ul id="swiper" data-active="1" data-elements="2" data-transition="stop">
+                			<li><a class="swap" href="#escuelas"><img width="70%" src="images/Familiar.png"></a></li>
+                			<li class="small"><a href="#"><img width="70%" src="images/Escolar.png"></a></li>
+                			
+                		</ul>
+                		</div>
+                		<div style="clear:both"></div>
+                    <div class="info">
+                        <p><img src="images/medibaby.png"></p>
+                    </div>
+                </div>
+            </div>            
+             <div id="escuelas">
+        	<div class="background"></div>
+                <img class="top-image" src="images/Escolar1.png">
+
+        		<div class="mobile-container">
+        			<h1>Identifícate con tu cuenta Medibaby</h1>
+        			<form class="form login">
+        				<h6>Correo electrónico</h6>
+        				<input type="text" id="email" placeholder="Correo electrónico"><br>
+        				<h6>Contraseña</h6>
+        				<input type="password" id="password" placeholder="Contraseña">
+        				<br>
+        				<a href="#" rel="link" class="loginsubmit whiteButton" path="familias.html">Identificate</a>
+        			</form>
+        		</div>
+        </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+/* DEVICES */
+.mobile-container {
+	position: relative;
+	left: 50%;
+	margin-left: -190px;
+	width: 360px;
+	padding: 10px;
+	text-align: left;
+}
+
+.form input[type=text], .form input[type=password] {
+
+	width: 330px; padding: 10px; margin: 4px; border-radius: 8px;
+	border: 1px solid #333;
+
+}
+.form input[type=submit] {
+	float: right; margin: 10px; background-color: #CCC; border-radius: 5px; border:none;
+	padding: 5px;
+	width: 100px;
+	box-shadow: 0px 0px 6px white;
+	text-shadow: 1px 1px 0px #EEE;
+	font-size: 18px; 
+}
+/* MAIN */
+ul#swiper li {
+	background-color: transparent;
+	border: none;
+	text-align: center;
+	float:left;
+	margin: 0px;
+	padding: 0px;
+		z-index: 9999;
+}
+
+ul#swiper li a:active { background-color: transparent; }
+ul#swiper li a:hover { background-color: transparent; }
+
+ul#swiper {
+	background-color: transparent;
+	border: none;
+	margin: 0px; padding: 0px;
+	z-index: 999;
+}
+
+.swipercontainer {
+	min-height: 400px; 
+    height: 40%;
+    margin-top: 10%;
+    margin-bottom: 50px;
+	overflow: hidden;
+		z-index: 99;
+}
+
+
+/* Familias */
+#escuelas { text-align: center; }
+.top-image { margin-top: 80px; }
+
+
+.background {
+position: absolute;
+z-index: -1;
+
+margin: 0px;
+padding: 0px;
+width: 100%;
+height: 100%;
+
+background: #ebffff; /* Old browsers */
+background: -moz-linear-gradient(top,  #ebffff 0%, #66cef3 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebffff), color-stop(100%,#66cef3)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ebffff 0%,#66cef3 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ebffff 0%,#66cef3 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ebffff 0%,#66cef3 100%); /* IE10+ */
+background: linear-gradient(top,  #ebffff 0%,#66cef3 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebffff', endColorstr='#66cef3',GradientType=0 ); /* IE6-9 */
+}
+
