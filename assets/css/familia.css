@@ -1,6 +1,6 @@
 
 .panel { text-align: center; }
-.small.whiteButton { width: 300px; height: 25px; display: block; }
+#jqt a.small.whiteButton { width: 300px; height: 25px; display: block; left: 50%; margin-left: -160px;  position: relative; }
 
 .mobile-container div.description { float: left;margin-top: 10px; }
 .mobile-container div.description p.name { font-size: 20px; color: #333; }
