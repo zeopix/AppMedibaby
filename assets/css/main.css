@@ -79,3 +79,5 @@ background: linear-gradient(top,  #ebffff 0%,#66cef3 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebffff', endColorstr='#66cef3',GradientType=0 ); /* IE6-9 */
 }
 
+.mobile-container { margin-top: 10px; border-radius: 10px; box-shadow: 0px 0px 10px #333 inset;  }
+

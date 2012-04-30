@@ -39,9 +39,10 @@
     
     
         <script type="text/javascript" charset="utf-8">
-            $(function(){
-
-          			
+              var jQT = new $.jQTouch({
+                startupScreen: 'jqt_startup.png',
+                statusBar: 'black-translucent',
+                preloadImages: []
                 
             });
         </script>
@@ -71,7 +72,7 @@
     <body>
         <div id="jqt">
            
-            <div id="panel" class="current">
+            <div id="panel" class="current panel">
         	<!--<div class="background"></div>-->
                 <img class="top-image" src="images/Escolar1.png">
 
@@ -85,12 +86,77 @@
 					<div class="menu">
 					
 					
-						<a href="#">Calendario<br><img width="100px" src="images/familiar/calendario.png"></a>	
-						<a href="#">Mis Citas<br><img width="100px" src="images/familiar/citas.png"></a>	
-						<a href="#">Doctores<br><img width="100px" src="images/familiar/doctores.png"></a>
+						<a href="#reserva">Reserva<br><img width="100px" src="images/familiar/calendario.png"></a>	
+						<a href="#citas">Mis Citas<br><img width="100px" src="images/familiar/citas.png"></a>	
+						<a href="#doctores">Doctores<br><img width="100px" src="images/familiar/doctores.png"></a>
 					
 					</div>
         		</div>
+        </div>
+           
+            <div id="citas" class="panel">
+        	<!--<div class="background"></div>-->
+                <img class="top-image" src="images/Escolar1.png">
+
+        		<div class="mobile-container">
+        			<div class="image"><img src="images/assets/nouser.png" width="120px" style="width: 100px;"></div>
+        			<div class="description">
+        			<p class="name">Alberto González</p>
+        			<p class="location">Nisa Pardo de Aravaca</p>
+					</div>
+					<div style="clear:both"></div>
+					<h1>Mis Citas</h1>
+					<ul>
+						<li><a href="#">4 may - 12:00 con el Doctor Colmenero en Hospital Nisa</a></li>
+						<li><a href="#">8 jun - 09:00 con el Doctor Colmenero en Hospital Nisa</a></li>
+					</ul>
+					<br><br>
+					<a href="#reserva" class="button">Reservar Cita</a>
+
+
+        		</div>
+
+        		<a href="#panel" class="small flip whiteButton">Volver Atrás</a>
+        </div>
+           
+            <div id="reserva" class="panel">
+        	<!--<div class="background"></div>-->
+                <img class="top-image" src="images/Escolar1.png">
+
+        		<div class="mobile-container">
+        			<div class="image"><img src="images/assets/nouser.png" width="120px" style="width: 100px;"></div>
+        			<div class="description">
+        			<p class="name">Alberto González</p>
+        			<p class="location">Nisa Pardo de Aravaca</p>
+					</div>
+					<div style="clear:both"></div>
+					<h1>Reservar Cita</h1>
+					Actualmente en construcción.
+
+        		</div>
+        		<a href="#panel" class="small whiteButton flip">Volver Atrás</a>
+        </div>
+           
+            <div id="doctores" class="panel">
+        	<!--<div class="background"></div>-->
+                <img class="top-image" src="images/Escolar1.png">
+
+        		<div class="mobile-container">
+        			<div class="image"><img src="images/assets/nouser.png" width="120px" style="width: 100px;"></div>
+        			<div class="description">
+        			<p class="name">Alberto González</p>
+        			<p class="location">Nisa Pardo de Aravaca</p>
+					</div>
+					<div style="clear:both"></div>
+					<h1>Mis Doctores</h1>
+					<ul>
+						<li><a href="#">Doctor Colmenero</a></li>
+						<li><a href="#">Doctora Isabel</a></li>
+						<li><a href="#">Doctor Cabrio</a></li>
+					</ul>
+
+        		</div>
+        		<a href="#panel" class="small whiteButton flip">Volver Atrás</a>
         </div>
         </div>
     </body>
